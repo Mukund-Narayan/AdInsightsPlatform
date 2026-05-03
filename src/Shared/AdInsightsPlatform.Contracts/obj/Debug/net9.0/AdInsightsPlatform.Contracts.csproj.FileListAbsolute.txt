@@ -1,0 +1,11 @@
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\bin\Debug\net9.0\AdInsightsPlatform.Contracts.deps.json
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\bin\Debug\net9.0\AdInsightsPlatform.Contracts.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\bin\Debug\net9.0\AdInsightsPlatform.Contracts.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.AssemblyInfoInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.AssemblyInfo.cs
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.csproj.CoreCompileInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\refint\AdInsightsPlatform.Contracts.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\AdInsightsPlatform.Contracts.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Shared\AdInsightsPlatform.Contracts\obj\Debug\net9.0\ref\AdInsightsPlatform.Contracts.dll
