@@ -1,0 +1,17 @@
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\EventCollector.Application.deps.json
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\EventCollector.Application.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\EventCollector.Application.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\AdInsightsPlatform.Contracts.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\EventCollector.Domain.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\EventCollector.Domain.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\bin\Debug\net9.0\AdInsightsPlatform.Contracts.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.csproj.AssemblyReference.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.AssemblyInfoInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.AssemblyInfo.cs
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.csproj.CoreCompileInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCol.9498403F.Up2Date
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\refint\EventCollector.Application.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\EventCollector.Application.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\EventCollector\EventCollector.Application\obj\Debug\net9.0\ref\EventCollector.Application.dll
