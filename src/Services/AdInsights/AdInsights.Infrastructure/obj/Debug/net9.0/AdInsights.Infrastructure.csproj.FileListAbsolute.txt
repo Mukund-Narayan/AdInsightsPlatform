@@ -1,0 +1,17 @@
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.csproj.AssemblyReference.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.AssemblyInfoInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.AssemblyInfo.cs
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.csproj.CoreCompileInputs.cache
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Infrastructure.deps.json
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Infrastructure.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Infrastructure.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Application.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Domain.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Domain.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\bin\Debug\net9.0\AdInsights.Application.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsigh.C88884BE.Up2Date
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\refint\AdInsights.Infrastructure.dll
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\AdInsights.Infrastructure.pdb
+C:\SRC\Assignment\AdInsightsPlatform\src\Services\AdInsights\AdInsights.Infrastructure\obj\Debug\net9.0\ref\AdInsights.Infrastructure.dll
