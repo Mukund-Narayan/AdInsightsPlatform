@@ -1,0 +1,343 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "EventCollector.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Confluent.Kafka": "2.6.1",
+          "EventCollector.Application": "1.0.0",
+          "EventCollector.Domain": "1.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "EventCollector.Infrastructure.dll": {}
+        }
+      },
+      "Confluent.Kafka/2.6.1": {
+        "dependencies": {
+          "librdkafka.redist": "2.6.1"
+        },
+        "runtime": {
+          "lib/net8.0/Confluent.Kafka.dll": {
+            "assemblyVersion": "2.6.1.0",
+            "fileVersion": "2.6.1.0"
+          }
+        }
+      },
+      "FluentValidation/11.11.0": {
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.11.0.0"
+          }
+        }
+      },
+      "librdkafka.redist/2.6.1": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/librdkafka.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/alpine-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/centos8-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/librdkafka.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/librdkafka.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libcrypto-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "3.3.2.0"
+          },
+          "runtimes/win-x64/native/libcurl.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "8.10.1.0"
+          },
+          "runtimes/win-x64/native/librdkafka.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/librdkafkacpp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libssl-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "3.3.2.0"
+          },
+          "runtimes/win-x64/native/msvcp140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "14.40.33816.0"
+          },
+          "runtimes/win-x64/native/vcruntime140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "14.40.33816.0"
+          },
+          "runtimes/win-x64/native/zlib1.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.3.1.0"
+          },
+          "runtimes/win-x64/native/zstd.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.5.6.0"
+          },
+          "runtimes/win-x86/native/libcrypto-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "3.3.2.0"
+          },
+          "runtimes/win-x86/native/libcurl.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "8.10.1.0"
+          },
+          "runtimes/win-x86/native/librdkafka.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/librdkafkacpp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libssl-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "3.3.2.0"
+          },
+          "runtimes/win-x86/native/msvcp140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "14.40.33816.0"
+          },
+          "runtimes/win-x86/native/vcruntime140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "14.40.33816.0"
+          },
+          "runtimes/win-x86/native/zlib1.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.3.1.0"
+          },
+          "runtimes/win-x86/native/zstd.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.5.6.0"
+          }
+        }
+      },
+      "MediatR/12.4.1": {
+        "dependencies": {
+          "MediatR.Contracts": "2.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.4.1.0"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/9.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/9.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/9.0.0": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "AdInsightsPlatform.Contracts/1.0.0": {
+        "runtime": {
+          "AdInsightsPlatform.Contracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EventCollector.Application/1.0.0": {
+        "dependencies": {
+          "EventCollector.Domain": "1.0.0",
+          "FluentValidation": "11.11.0",
+          "MediatR": "12.4.1",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "EventCollector.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EventCollector.Domain/1.0.0": {
+        "dependencies": {
+          "AdInsightsPlatform.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "EventCollector.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EventCollector.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Confluent.Kafka/2.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DCap4xzbUzItoFVBCmBbng6q4XbaxfqLgR/b56b67L9S0iUTIwrSAvk3MPegyQNn56+1C/m3ytwy1YU+nAuqDA==",
+      "path": "confluent.kafka/2.6.1",
+      "hashPath": "confluent.kafka.2.6.1.nupkg.sha512"
+    },
+    "FluentValidation/11.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw==",
+      "path": "fluentvalidation/11.11.0",
+      "hashPath": "fluentvalidation.11.11.0.nupkg.sha512"
+    },
+    "librdkafka.redist/2.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RcpH/eqmfp08RmfeQdHeJEz0OaAcYWJo8EqQiU4ohDrBygIXbWhCTksUFkhYGqap/5Ycm+HC9RVSlwetFo9SlA==",
+      "path": "librdkafka.redist/2.6.1",
+      "hashPath": "librdkafka.redist.2.6.1.nupkg.sha512"
+    },
+    "MediatR/12.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0tLxCgEC5+r1OCuumR3sWyiVa+BMv3AgiU4+pz8xqTc+2q1WbUEXFOr7Orm96oZ9r9FsldgUtWvB2o7b9jDOaw==",
+      "path": "mediatr/12.4.1",
+      "hashPath": "mediatr.12.4.1.nupkg.sha512"
+    },
+    "MediatR.Contracts/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "path": "mediatr.contracts/2.0.1",
+      "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lqvd7W3FGKUO1+ZoUEMaZ5XDJeWvjpy2/M/ptCGz3tXLD4HWVaSzjufsAsjemasBEg+2SxXVtYVvGt5r2nKDlg==",
+      "path": "microsoft.extensions.configuration.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+6f2qv2a3dLwd5w6JanPIPs47CxRbnk+ZocMJUhv9NxP88VlOcJYZs9jY+MYSjxvady08bUZn6qgiNh7DadGgg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g0UfujELzlLbHoVG8kPKVBaW470Ewi+jnptGS9KUi6jcb+k2StujtK3m26DFSGGwQ/+bVgZfsWqNzlP6YOejvw==",
+      "path": "microsoft.extensions.logging.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-N3qEBzmLMYiASUlKxxFIISP4AiwuPTHF5uCh+2CWSwwzAJiIYx0kBJsS30cp1nvhSySFAVi30jecD307jV+8Kg==",
+      "path": "microsoft.extensions.primitives/9.0.0",
+      "hashPath": "microsoft.extensions.primitives.9.0.0.nupkg.sha512"
+    },
+    "AdInsightsPlatform.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EventCollector.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EventCollector.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
