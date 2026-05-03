@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "swwQ6tP0mWA=",
+  "success": true,
+  "projectFilePath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mnara\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
+    "C:\\Users\\mnara\\.nuget\\packages\\mediatr\\12.4.0\\mediatr.12.4.0.nupkg.sha512",
+    "C:\\Users\\mnara\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\mnara\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.4\\microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
+    "C:\\Users\\mnara\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.4\\microsoft.extensions.logging.abstractions.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
