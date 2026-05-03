@@ -1,0 +1,276 @@
+version: "3.9"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AdInsightsPlatform — Local Development Stack
+#
+# Usage:
+#   docker compose -f infrastructure/docker/docker-compose.yml up -d
+#
+# Services:
+#   - Kafka (3.7, KRaft)        → localhost:9092
+#   - Schema Registry           → localhost:8081
+#   - Cassandra (4.1)           → localhost:9042
+#   - ClickHouse (24.3)         → localhost:8123 (HTTP), 9000 (native)
+#   - Redis (7.2)               → localhost:6379
+#   - MinIO (S3-compatible)     → localhost:9000 (API), 9001 (console)
+#   - Flink JobManager          → localhost:8081 (UI)
+#   - Flink TaskManager         → (connected to JobManager)
+#   - AdInsights API            → localhost:5001
+#   - EventCollector API        → localhost:5002
+# ═══════════════════════════════════════════════════════════════════════════════
+
+networks:
+  adinsights-net:
+    driver: bridge
+
+volumes:
+  kafka-data:
+  cassandra-data:
+  clickhouse-data:
+  redis-data:
+  minio-data:
+  flink-checkpoints:
+
+services:
+
+  # ─── Apache Kafka (KRaft mode — no Zookeeper) ──────────────────────────────
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: adinsights-kafka
+    networks: [adinsights-net]
+    ports:
+      - "9092:9092"
+      - "9094:9094"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD", "kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # ─── Confluent Schema Registry ─────────────────────────────────────────────
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.6.0
+    container_name: adinsights-schema-registry
+    networks: [adinsights-net]
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka:9092"
+      SCHEMA_REGISTRY_LISTENERS: "http://0.0.0.0:8081"
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  # ─── Kafka Topic Init ───────────────────────────────────────────────────────
+  kafka-init:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: adinsights-kafka-init
+    networks: [adinsights-net]
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c"]
+    command: |
+      "
+      echo 'Creating Kafka topics...'
+      kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic raw-events --partitions 4 --replication-factor 1
+      kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic processed.ad-clicks --partitions 4 --replication-factor 1
+      kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic processed.ad-impressions --partitions 4 --replication-factor 1
+      kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic processed.click-to-basket --partitions 4 --replication-factor 1
+      kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic dlq.events --partitions 2 --replication-factor 1
+      echo 'Kafka topics created successfully.'
+      "
+    restart: on-failure
+
+  # ─── Apache Cassandra ───────────────────────────────────────────────────────
+  cassandra:
+    image: cassandra:4.1
+    container_name: adinsights-cassandra
+    networks: [adinsights-net]
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=AdInsightsCluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_RACK=rack1
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=128M
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+      - ./../../infrastructure/schemas/cassandra-schema.cql:/docker-entrypoint-initdb.d/schema.cql:ro
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 30s
+      timeout: 15s
+      retries: 10
+      start_period: 60s
+
+  # ─── ClickHouse ─────────────────────────────────────────────────────────────
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.3
+    container_name: adinsights-clickhouse
+    networks: [adinsights-net]
+    ports:
+      - "8123:8123"    # HTTP interface
+      - "9000:9000"    # Native protocol
+    environment:
+      CLICKHOUSE_DB: ad_insights
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: ""
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ─── Redis ──────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.2-alpine
+    container_name: adinsights-redis
+    networks: [adinsights-net]
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru --save ""
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # ─── MinIO (S3-compatible object storage for Flink checkpoints) ─────────────
+  minio:
+    image: minio/minio:latest
+    container_name: adinsights-minio
+    networks: [adinsights-net]
+    ports:
+      - "9010:9000"    # API
+      - "9011:9001"    # Console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ─── Apache Flink JobManager ────────────────────────────────────────────────
+  flink-jobmanager:
+    image: flink:1.19-scala_2.12-java17
+    container_name: adinsights-flink-jm
+    networks: [adinsights-net]
+    ports:
+      - "8082:8081"    # Flink Web UI
+    command: jobmanager
+    environment:
+      - FLINK_PROPERTIES=jobmanager.rpc.address:flink-jobmanager
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - CASSANDRA_HOST=cassandra
+      - CHECKPOINT_PATH=file:///flink-checkpoints
+    volumes:
+      - flink-checkpoints:/flink-checkpoints
+    depends_on:
+      kafka:
+        condition: service_healthy
+      cassandra:
+        condition: service_healthy
+
+  # ─── Apache Flink TaskManager ───────────────────────────────────────────────
+  flink-taskmanager:
+    image: flink:1.19-scala_2.12-java17
+    container_name: adinsights-flink-tm
+    networks: [adinsights-net]
+    command: taskmanager
+    environment:
+      - FLINK_PROPERTIES=jobmanager.rpc.address:flink-jobmanager
+      - TASK_MANAGER_NUMBER_OF_TASK_SLOTS=4
+    volumes:
+      - flink-checkpoints:/flink-checkpoints
+    depends_on:
+      - flink-jobmanager
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+
+  # ─── AdInsights API (.NET 9) ─────────────────────────────────────────────────
+  ad-insights-api:
+    build:
+      context: ../..
+      dockerfile: src/Services/AdInsights/AdInsights.Api/Dockerfile
+    container_name: adinsights-api
+    networks: [adinsights-net]
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__Redis=redis:6379
+      - ConnectionStrings__ClickHouse=Host=clickhouse;Port=8123;Database=ad_insights;Username=default;Password=
+      - Cassandra__ContactPoints__0=cassandra
+      - Cassandra__Port=9042
+      - Cassandra__Keyspace=ad_insights
+      - Jwt__Issuer=https://auth.adinsights.io
+      - Jwt__Audience=adinsights-api
+      - Jwt__Key=dev-only-secret-key-minimum-256-bits!!
+      - Jaeger__Host=jaeger
+      - Jaeger__Port=6831
+    depends_on:
+      cassandra:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ─── EventCollector API (.NET 9) ─────────────────────────────────────────────
+  event-collector-api:
+    build:
+      context: ../..
+      dockerfile: src/Services/EventCollector/EventCollector.Api/Dockerfile
+    container_name: adinsights-event-collector
+    networks: [adinsights-net]
+    ports:
+      - "5002:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - Kafka__BootstrapServers=kafka:9092
+      - Jwt__Issuer=https://auth.adinsights.io
+      - Jwt__Audience=adinsights-api
+      - Jwt__Key=dev-only-secret-key-minimum-256-bits!!
+    depends_on:
+      kafka:
+        condition: service_healthy

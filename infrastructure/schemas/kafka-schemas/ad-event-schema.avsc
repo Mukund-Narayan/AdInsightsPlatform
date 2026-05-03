@@ -1,0 +1,72 @@
+{
+  "type": "record",
+  "name": "AdEvent",
+  "namespace": "com.adinsights.events",
+  "doc": "Generic schema for all ad interaction events published to the raw-events Kafka topic. The eventType field discriminates between AdClick, AdImpression, AddToCart, etc.",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "doc": "UUID — unique identifier for this event instance"
+    },
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["AdClick", "AdImpression", "AddToCart", "ProductView", "Purchase"]
+      },
+      "doc": "Discriminator field used by Flink for stream routing"
+    },
+    {
+      "name": "tenantId",
+      "type": "string",
+      "doc": "Tenant identifier — used as Kafka message key for partition affinity"
+    },
+    {
+      "name": "campaignId",
+      "type": "string",
+      "doc": "The advertising campaign this event is attributed to"
+    },
+    {
+      "name": "adId",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "The specific ad unit (null for non-ad events like ProductView)"
+    },
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "Anonymised user identifier — hashed cookie or device ID"
+    },
+    {
+      "name": "productId",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Product involved (required for AddToCart and ProductView)"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Client-side event timestamp in UTC milliseconds since epoch"
+    },
+    {
+      "name": "correlationId",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Distributed tracing correlation identifier"
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {},
+      "doc": "Extension map for additional event properties (page URL, user agent, etc.)"
+    }
+  ]
+}
