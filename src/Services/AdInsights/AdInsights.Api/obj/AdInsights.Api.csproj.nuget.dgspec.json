@@ -1,0 +1,391 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Api\\AdInsights.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Api\\AdInsights.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Api\\AdInsights.Api.csproj",
+        "projectName": "AdInsights.Api",
+        "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Api\\AdInsights.Api.csproj",
+        "packagesPath": "C:\\Users\\mnara\\.nuget\\packages\\",
+        "outputPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mnara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj": {
+                "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj"
+              },
+              "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\AdInsights.Infrastructure.csproj": {
+                "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\AdInsights.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AspNetCoreRateLimit": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.13, )"
+            },
+            "OpenTelemetry.Exporter.Jaeger": {
+              "target": "Package",
+              "version": "[1.5.1, )"
+            },
+            "OpenTelemetry.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[1.10.0, )"
+            },
+            "OpenTelemetry.Instrumentation.AspNetCore": {
+              "target": "Package",
+              "version": "[1.10.1, )"
+            },
+            "OpenTelemetry.Instrumentation.Http": {
+              "target": "Package",
+              "version": "[1.15.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.9.0, )"
+            },
+            "prometheus-net.AspNetCore": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj",
+        "projectName": "AdInsights.Application",
+        "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj",
+        "packagesPath": "C:\\Users\\mnara\\.nuget\\packages\\",
+        "outputPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mnara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj": {
+                "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.10.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj",
+        "projectName": "AdInsights.Domain",
+        "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj",
+        "packagesPath": "C:\\Users\\mnara\\.nuget\\packages\\",
+        "outputPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mnara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\AdInsights.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\AdInsights.Infrastructure.csproj",
+        "projectName": "AdInsights.Infrastructure",
+        "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\AdInsights.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mnara\\.nuget\\packages\\",
+        "outputPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mnara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj": {
+                "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Application\\AdInsights.Application.csproj"
+              },
+              "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj": {
+                "projectPath": "C:\\SRC\\Assignment\\AdInsightsPlatform\\src\\Services\\AdInsights\\AdInsights.Domain\\AdInsights.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "CassandraCSharpDriver": {
+              "target": "Package",
+              "version": "[3.21.1, )"
+            },
+            "ClickHouse.Client": {
+              "target": "Package",
+              "version": "[7.14.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.16, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
