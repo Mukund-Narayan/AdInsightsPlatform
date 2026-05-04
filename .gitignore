@@ -1,0 +1,145 @@
+# =========================
+
+# Build artifacts
+
+# =========================
+
+bin/
+obj/
+out/
+publish/
+
+# =========================
+
+# User-specific files
+
+# =========================
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+
+# Visual Studio / VS Code
+
+# =========================
+
+.vs/
+.vscode/
+*.code-workspace
+
+# =========================
+
+# Logs
+
+# =========================
+
+logs/
+*.log
+*.tlog
+
+# =========================
+
+# OS files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# Environment files
+
+# =========================
+
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+
+# =========================
+
+# Secrets
+
+# =========================
+
+secrets.json
+
+# =========================
+
+# Node (if Angular frontend exists)
+
+# =========================
+
+node_modules/
+dist/
+npm-debug.log*
+
+# =========================
+
+# Docker
+
+# =========================
+
+docker-data/
+*.pid
+*.seed
+
+# Ignore local volumes (Kafka, Zookeeper, ClickHouse)
+
+data/
+kafka-data/
+zookeeper-data/
+clickhouse-data/
+
+# =========================
+
+# Kafka specific
+
+# =========================
+
+*.kafka
+*.offset
+*.log.*
+
+# =========================
+
+# Rider / Resharper
+
+# =========================
+
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# =========================
+
+# Coverage / Test results
+
+# =========================
+
+coverage/
+TestResults/
+
+# =========================
+
+# NuGet
+
+# =========================
+
+*.nupkg
+packages/
+.nuget/
+
+# =========================
+
+# Misc
+
+# =========================
+
+*.cache
+*.tmp
+*.temp
