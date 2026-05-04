@@ -315,7 +315,7 @@ docker compose -f infrastructure/docker/docker-compose.monitoring.yml up -d
 | ClickHouse | Shards + replicas | MergeTree distributed table |
 | Redis | Sentinel → Cluster | Redis Cluster for >100GB dataset |
 
-### Peak Traffic (Black Friday) Strategy
+### Peak Traffic Strategy
 
 1. **Pre-scale**: Increase Kafka partitions, Flink parallelism 2 weeks before
 2. **HPA triggers**: CPU > 60% → scale API pods within 30 seconds
