@@ -369,9 +369,9 @@ Open in [draw.io](https://app.diagrams.net/):
 
 | ADR | Decision | Status |
 |---|---|---|
-| [ADR-001](docs/adr/ADR-001-kafka-for-ingestion.md) | Apache Kafka for event ingestion | ✅ Accepted |
-| [ADR-002](docs/adr/ADR-002-flink-for-processing.md) | Apache Flink for stream processing | ✅ Accepted |
-| [ADR-003](docs/adr/ADR-003-storage-strategy.md) | Multi-tier storage (Cassandra + ClickHouse + Redis) | ✅ Accepted |
+| [01](docs/adr/01-kafka-for-ingestion.md) | Apache Kafka for event ingestion | ✅ Accepted |
+| [02](docs/adr/02-flink-for-processing.md) | Apache Flink for stream processing | ✅ Accepted |
+| [03](docs/adr/03-storage-strategy.md) | Multi-tier storage (Cassandra + ClickHouse + Redis) | ✅ Accepted |
 
 ---
 
@@ -402,7 +402,6 @@ Open in [draw.io](https://app.diagrams.net/):
 
 | File | Purpose |
 |---|---|
-| `implementation_plan.md` | Full design document with all types, functions, classes |
 | `docs/api/openapi.yaml` | OpenAPI 3.1 API specification |
 | `docs/architecture/system-architecture.drawio` | System component diagram |
 | `docs/architecture/deployment-diagram.drawio` | Kubernetes deployment diagram |
@@ -414,16 +413,3 @@ Open in [draw.io](https://app.diagrams.net/):
 | `flink-jobs/ad-insights-processor/src/main/java/com/adinsights/processors/ClickToBasketCorrelator.java` | CEP conversion tracking |
 
 ---
-
-## 🤝 Contributing
-
-1. Follow **Clean Architecture** layer boundaries — no skipping layers
-2. All public APIs must have XML documentation comments
-3. New query types must implement `ICacheableQuery` for automatic caching
-4. New event types: add to `EventTypes.cs` constants, `Contracts` project, and `PublishEventCommandHandler` switch
-5. Run tests before committing: `dotnet test`
-6. See `implementation_plan.md` for the full design specification
-
----
-
-*Built with ❤️ for high-scale retail advertising analytics*
