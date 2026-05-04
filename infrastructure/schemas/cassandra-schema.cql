@@ -1,13 +1,3 @@
--- ═══════════════════════════════════════════════════════════════════════════════
--- AdInsightsPlatform — Apache Cassandra Schema
--- Keyspace: ad_insights
---
--- Design Principles:
---   - Primary keys include (tenant_id, campaign_id) to enforce data isolation
---   - Counter tables used for atomic increment aggregation (no read-before-write)
---   - TTL set on hot data tables (30 days) to auto-expire without maintenance
---   - Partition key chosen for even data distribution across nodes
--- ═══════════════════════════════════════════════════════════════════════════════
 
 -- ─── Keyspace ────────────────────────────────────────────────────────────────
 -- NetworkTopologyStrategy: production; SimpleStrategy: local dev
