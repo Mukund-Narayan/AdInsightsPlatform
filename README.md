@@ -397,19 +397,3 @@ Open in [draw.io](https://app.diagrams.net/):
 | Testing | xUnit + Moq + FluentAssertions | Latest |
 
 ---
-
-## 📁 Key Files Reference
-
-| File | Purpose |
-|---|---|
-| `docs/api/openapi.yaml` | OpenAPI 3.1 API specification |
-| `docs/architecture/system-architecture.drawio` | System component diagram |
-| `docs/architecture/deployment-diagram.drawio` | Kubernetes deployment diagram |
-| `infrastructure/docker/docker-compose.yml` | Local development full stack |
-| `infrastructure/schemas/cassandra-schema.cql` | Cassandra DDL |
-| `infrastructure/schemas/kafka-schemas/ad-event-schema.avsc` | Kafka Avro schema |
-| `src/Services/AdInsights/AdInsights.Domain/ValueObjects/TimePeriod.cs` | Hot/cold routing logic |
-| `src/Services/AdInsights/AdInsights.Infrastructure/Persistence/Routing/HybridAdMetricsRepository.cs` | Storage router |
-| `flink-jobs/ad-insights-processor/src/main/java/com/adinsights/processors/ClickToBasketCorrelator.java` | CEP conversion tracking |
-
----
