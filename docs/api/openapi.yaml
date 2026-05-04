@@ -1,0 +1,415 @@
+openapi: 3.1.0
+info:
+  title: AdInsights Platform API
+  version: 1.0.0
+  description: |
+    Real-time ad analytics API for online retail advertising networks.
+    
+    Provides metrics for advertising campaigns including clicks, impressions, and 
+    click-to-basket conversions. Supports both real-time queries (≤30 days, served 
+    from Cassandra) and historical queries (>30 days, served from ClickHouse).
+    
+    ## Authentication
+    All endpoints require a JWT Bearer token containing a `tenant_id` claim.
+    
+    ## Multi-tenancy
+    All data is scoped to the tenant identified in the JWT. Cross-tenant access 
+    returns HTTP 403.
+    
+    ## Data Freshness
+    The `isRealTime` field in responses indicates whether data was served from the 
+    real-time path (Cassandra, ~30s lag from events) or historical path (ClickHouse).
+  contact:
+    name: Platform Engineering
+    email: platform@adinsights.io
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://api.adinsights.io/api/v1
+    description: Production
+  - url: https://staging-api.adinsights.io/api/v1
+    description: Staging
+  - url: http://localhost:5001/api/v1
+    description: Local Development
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Ad Metrics
+    description: Query aggregated advertising metrics for campaigns
+  - name: Event Ingestion
+    description: Ingest ad interaction events from retailer websites
+
+paths:
+
+  # ─── Ad Metrics ─────────────────────────────────────────────────────────────
+
+  /ad/{campaignId}/clicks:
+    get:
+      tags: [Ad Metrics]
+      operationId: getAdClicks
+      summary: Get total ad clicks for a campaign
+      description: |
+        Returns the total number of click events for the specified campaign within 
+        the given date range.
+        
+        **Data Source Routing:**
+        - Period ≤ 30 days: Cassandra (hot path, ~30s lag)
+        - Period > 30 days: ClickHouse (cold path, batch updated)
+        - Period spans both: Results merged from both sources
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Click count retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdMetricsResponse'
+              examples:
+                realtime:
+                  summary: Real-time query (last 24 hours)
+                  value:
+                    campaignId: "campaign-abc-123"
+                    metricType: "Clicks"
+                    count: 15234
+                    from: "2024-01-15T00:00:00Z"
+                    to: "2024-01-15T23:59:59Z"
+                    isRealTime: true
+                    computedAt: "2024-01-15T12:30:00Z"
+                historical:
+                  summary: Historical query (90 days ago)
+                  value:
+                    campaignId: "campaign-abc-123"
+                    metricType: "Clicks"
+                    count: 987432
+                    from: "2023-10-01T00:00:00Z"
+                    to: "2023-10-31T23:59:59Z"
+                    isRealTime: false
+                    computedAt: "2024-01-15T12:30:01Z"
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /ad/{campaignId}/impressions:
+    get:
+      tags: [Ad Metrics]
+      operationId: getAdImpressions
+      summary: Get total ad impressions for a campaign
+      description: |
+        Returns the total number of times the advertisement was displayed to users 
+        within the given date range. Viewable impressions (where the ad was in the 
+        viewport) are tracked separately via the `isViewable` event property.
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Impression count retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdMetricsResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /ad/{campaignId}/clickToBasket:
+    get:
+      tags: [Ad Metrics]
+      operationId: getClickToBasket
+      summary: Get click-to-basket conversions for a campaign
+      description: |
+        Returns the number of click-to-basket conversion events for a campaign.
+        
+        A conversion is counted when a user adds a product to their cart within 
+        **30 minutes** of clicking on the campaign's advertisement 
+        (last-click attribution model).
+        
+        Conversions are computed by the Flink CEP (Complex Event Processing) job, 
+        which maintains per-user session state keyed by `(tenantId, campaignId, userId)`.
+        
+        **Note**: There is an inherent 30-minute lag in CTB metrics because the 
+        CEP window must close before a conversion can be recorded.
+      parameters:
+        - $ref: '#/components/parameters/campaignId'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Click-to-basket count retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdMetricsResponse'
+              examples:
+                conversion:
+                  value:
+                    campaignId: "campaign-abc-123"
+                    metricType: "ClickToBasket"
+                    count: 1847
+                    from: "2024-01-15T00:00:00Z"
+                    to: "2024-01-15T23:59:59Z"
+                    isRealTime: true
+                    computedAt: "2024-01-15T12:30:02Z"
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  # ─── Event Ingestion ─────────────────────────────────────────────────────────
+
+  /events:
+    post:
+      tags: [Event Ingestion]
+      operationId: ingestEvent
+      summary: Ingest a single ad interaction event
+      description: |
+        Accepts a single event and publishes it durably to Kafka. Returns HTTP 202 
+        Accepted when the event has been persisted to Kafka. The event will be 
+        processed by Flink within approximately 60 seconds.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventIngestionRequest'
+            examples:
+              adClick:
+                summary: Ad click event
+                value:
+                  eventType: "AdClick"
+                  campaignId: "campaign-abc-123"
+                  adId: "ad-unit-456"
+                  userId: "user-hashed-789"
+                  productId: "prod-123"
+              addToCart:
+                summary: Add to cart event
+                value:
+                  eventType: "AddToCart"
+                  campaignId: "campaign-abc-123"
+                  userId: "user-hashed-789"
+                  productId: "prod-123"
+      responses:
+        '202':
+          description: Event accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventIngestionResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /events/batch:
+    post:
+      tags: [Event Ingestion]
+      operationId: ingestBatchEvents
+      summary: Ingest a batch of events (max 100)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 100
+              items:
+                $ref: '#/components/schemas/EventIngestionRequest'
+      responses:
+        '202':
+          description: Events accepted for processing
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventIngestionResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token containing `tenant_id` claim
+
+  parameters:
+    campaignId:
+      name: campaignId
+      in: path
+      required: true
+      description: The unique identifier of the advertising campaign
+      schema:
+        type: string
+        example: "campaign-abc-123"
+
+    from:
+      name: from
+      in: query
+      required: false
+      description: Start of the reporting window (UTC). Defaults to 24 hours ago.
+      schema:
+        type: string
+        format: date-time
+        example: "2024-01-01T00:00:00Z"
+
+    to:
+      name: to
+      in: query
+      required: false
+      description: End of the reporting window (UTC). Defaults to now.
+      schema:
+        type: string
+        format: date-time
+        example: "2024-01-31T23:59:59Z"
+
+  schemas:
+    AdMetricsResponse:
+      type: object
+      required: [campaignId, metricType, count, from, to, isRealTime, computedAt]
+      properties:
+        campaignId:
+          type: string
+          description: The campaign this metric belongs to
+        metricType:
+          type: string
+          enum: [Clicks, Impressions, ClickToBasket]
+          description: The type of metric
+        count:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Aggregated count for the requested period
+        from:
+          type: string
+          format: date-time
+          description: Start of the queried time window (inclusive)
+        to:
+          type: string
+          format: date-time
+          description: End of the queried time window (inclusive)
+        isRealTime:
+          type: boolean
+          description: True if served from Cassandra (hot path), false if from ClickHouse
+        computedAt:
+          type: string
+          format: date-time
+          description: UTC timestamp when this metric was fetched
+
+    EventIngestionRequest:
+      type: object
+      required: [eventType, campaignId, userId]
+      properties:
+        eventType:
+          type: string
+          enum: [AdClick, AdImpression, AddToCart, ProductView, Purchase]
+        campaignId:
+          type: string
+        adId:
+          type: string
+          nullable: true
+        userId:
+          type: string
+          description: Anonymised user identifier
+        productId:
+          type: string
+          nullable: true
+        clientTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+          description: Client-side event time. Uses server time if null.
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+
+    EventIngestionResponse:
+      type: object
+      required: [eventId, accepted, timestamp]
+      properties:
+        eventId:
+          type: string
+          format: uuid
+          description: Unique identifier assigned to this event
+        accepted:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+
+    ProblemDetails:
+      type: object
+      required: [type, title, status]
+      properties:
+        type:
+          type: string
+          format: uri
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        traceId:
+          type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+
+  responses:
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+
+    Unauthorized:
+      description: JWT token missing or invalid
+
+    Forbidden:
+      description: Caller does not have access to the requested tenant's data
+
+    NotFound:
+      description: Campaign not found for the specified tenant
+
+    InternalError:
+      description: An unexpected server error occurred
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
