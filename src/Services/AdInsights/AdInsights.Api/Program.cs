@@ -39,12 +39,12 @@ try
             tracing
                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AdInsights.Api"))
                 .AddAspNetCoreInstrumentation()
-                .AddHttpClientInstrumentation()
-                .AddJaegerExporter(options =>
-                {
-                    options.AgentHost = builder.Configuration["Jaeger:Host"] ?? "localhost";
-                    options.AgentPort = builder.Configuration.GetValue("Jaeger:Port", 6831);
-                });
+                .AddHttpClientInstrumentation();
+                //.AddJaegerExporter(options =>
+                //{
+                //    options.AgentHost = builder.Configuration["Jaeger:Host"] ?? "localhost";
+                //    options.AgentPort = builder.Configuration.GetValue("Jaeger:Port", 6831);
+                //});
         });
 
     // ─── Infrastructure (Cassandra, Redis, ClickHouse, DI registrations) ───
