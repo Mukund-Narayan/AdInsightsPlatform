@@ -315,7 +315,7 @@ docker compose -f infrastructure/docker/docker-compose.monitoring.yml up -d
 | ClickHouse | Shards + replicas | MergeTree distributed table |
 | Redis | Sentinel → Cluster | Redis Cluster for >100GB dataset |
 
-### Peak Traffic (Black Friday) Strategy
+### Peak Traffic Strategy
 
 1. **Pre-scale**: Increase Kafka partitions, Flink parallelism 2 weeks before
 2. **HPA triggers**: CPU > 60% → scale API pods within 30 seconds
@@ -395,21 +395,5 @@ Open in [draw.io](https://app.diagrams.net/):
 | Auth | JWT Bearer (HS256) | - |
 | Containers | Docker + Kubernetes | 29.x / 1.29 |
 | Testing | xUnit + Moq + FluentAssertions | Latest |
-
----
-
-## 📁 Key Files Reference
-
-| File | Purpose |
-|---|---|
-| `docs/api/openapi.yaml` | OpenAPI 3.1 API specification |
-| `docs/architecture/system-architecture.drawio` | System component diagram |
-| `docs/architecture/deployment-diagram.drawio` | Kubernetes deployment diagram |
-| `infrastructure/docker/docker-compose.yml` | Local development full stack |
-| `infrastructure/schemas/cassandra-schema.cql` | Cassandra DDL |
-| `infrastructure/schemas/kafka-schemas/ad-event-schema.avsc` | Kafka Avro schema |
-| `src/Services/AdInsights/AdInsights.Domain/ValueObjects/TimePeriod.cs` | Hot/cold routing logic |
-| `src/Services/AdInsights/AdInsights.Infrastructure/Persistence/Routing/HybridAdMetricsRepository.cs` | Storage router |
-| `flink-jobs/ad-insights-processor/src/main/java/com/adinsights/processors/ClickToBasketCorrelator.java` | CEP conversion tracking |
 
 ---
