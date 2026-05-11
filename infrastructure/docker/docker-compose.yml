@@ -248,8 +248,6 @@ services:
       - Jwt__Issuer=https://auth.adinsights.io
       - Jwt__Audience=adinsights-api
       - Jwt__Key=dev-only-secret-key-minimum-256-bits!!
-      - Jaeger__Host=jaeger
-      - Jaeger__Port=6831
     depends_on:
       cassandra:
         condition: service_healthy
